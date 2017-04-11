@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7DB387BD1E9D149500D234FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB387BC1E9D149500D234FC /* AppDelegate.m */; };
+		7DB387C01E9D14A600D234FC /* IMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB387BF1E9D14A600D234FC /* IMessageViewController.m */; };
+		7DB387C81E9D14BB00D234FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C11E9D14BB00D234FC /* Assets.xcassets */; };
+		7DB387C91E9D14BB00D234FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C31E9D14BB00D234FC /* LaunchScreen.storyboard */; };
+		7DB387CA1E9D14BB00D234FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C51E9D14BB00D234FC /* Main.storyboard */; };
+		7DB387CB1E9D14BB00D234FC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C71E9D14BB00D234FC /* Info.plist */; };
+		7DB387CD1E9D14C400D234FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB387CC1E9D14C400D234FC /* main.m */; };
+		7DD1F08C1E9D169100CD0EFB /* IMControlCameraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F0781E9D169100CD0EFB /* IMControlCameraCollectionViewCell.m */; };
+		7DD1F08D1E9D169100CD0EFB /* IMControlCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F07A1E9D169100CD0EFB /* IMControlCollectionViewCell.m */; };
+		7DD1F08E1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F07C1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.m */; };
+		7DD1F08F1E9D169100CD0EFB /* IMPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F07E1E9D169100CD0EFB /* IMPhotoCollectionViewCell.m */; };
+		7DD1F0901E9D169100CD0EFB /* IMStreamCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F0801E9D169100CD0EFB /* IMStreamCollectionViewCell.m */; };
+		7DD1F0911E9D169100CD0EFB /* IMessageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F0831E9D169100CD0EFB /* IMessageCollectionView.m */; };
+		7DD1F0921E9D169100CD0EFB /* IMCaptureSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F0871E9D169100CD0EFB /* IMCaptureSessionManager.m */; };
+		7DD1F0931E9D169100CD0EFB /* IMImagePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F0891E9D169100CD0EFB /* IMImagePickerManager.m */; };
+		7DD1F0941E9D169100CD0EFB /* IMPhotoAssetsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1F08B1E9D169100CD0EFB /* IMPhotoAssetsManager.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7D3225EE1E8D428A00BE285A /* iMessageAttachment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageAttachment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DB387BB1E9D149500D234FC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		7DB387BC1E9D149500D234FC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		7DB387BE1E9D14A600D234FC /* IMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageViewController.h; sourceTree = SOURCE_ROOT; };
+		7DB387BF1E9D14A600D234FC /* IMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMessageViewController.m; sourceTree = SOURCE_ROOT; };
+		7DB387C11E9D14BB00D234FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		7DB387C41E9D14BB00D234FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DB387C61E9D14BB00D234FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		7DB387C71E9D14BB00D234FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		7DB387CC1E9D14C400D234FC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		7DD1F0761E9D169100CD0EFB /* IMCollectionViewCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCollectionViewCellProtocol.h; sourceTree = "<group>"; };
+		7DD1F0771E9D169100CD0EFB /* IMControlCameraCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMControlCameraCollectionViewCell.h; sourceTree = "<group>"; };
+		7DD1F0781E9D169100CD0EFB /* IMControlCameraCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMControlCameraCollectionViewCell.m; sourceTree = "<group>"; };
+		7DD1F0791E9D169100CD0EFB /* IMControlCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMControlCollectionViewCell.h; sourceTree = "<group>"; };
+		7DD1F07A1E9D169100CD0EFB /* IMControlCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMControlCollectionViewCell.m; sourceTree = "<group>"; };
+		7DD1F07B1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMControlPhotoLibraryCollectionViewCell.h; sourceTree = "<group>"; };
+		7DD1F07C1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMControlPhotoLibraryCollectionViewCell.m; sourceTree = "<group>"; };
+		7DD1F07D1E9D169100CD0EFB /* IMPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		7DD1F07E1E9D169100CD0EFB /* IMPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		7DD1F07F1E9D169100CD0EFB /* IMStreamCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMStreamCollectionViewCell.h; sourceTree = "<group>"; };
+		7DD1F0801E9D169100CD0EFB /* IMStreamCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMStreamCollectionViewCell.m; sourceTree = "<group>"; };
+		7DD1F0811E9D169100CD0EFB /* IMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMConstants.h; sourceTree = "<group>"; };
+		7DD1F0821E9D169100CD0EFB /* IMessageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageCollectionView.h; sourceTree = "<group>"; };
+		7DD1F0831E9D169100CD0EFB /* IMessageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMessageCollectionView.m; sourceTree = "<group>"; };
+		7DD1F0841E9D169100CD0EFB /* IMessageViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageViewControllerProtocol.h; sourceTree = "<group>"; };
+		7DD1F0861E9D169100CD0EFB /* IMCaptureSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCaptureSessionManager.h; sourceTree = "<group>"; };
+		7DD1F0871E9D169100CD0EFB /* IMCaptureSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCaptureSessionManager.m; sourceTree = "<group>"; };
+		7DD1F0881E9D169100CD0EFB /* IMImagePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMImagePickerManager.h; sourceTree = "<group>"; };
+		7DD1F0891E9D169100CD0EFB /* IMImagePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMImagePickerManager.m; sourceTree = "<group>"; };
+		7DD1F08A1E9D169100CD0EFB /* IMPhotoAssetsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPhotoAssetsManager.h; sourceTree = "<group>"; };
+		7DD1F08B1E9D169100CD0EFB /* IMPhotoAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMPhotoAssetsManager.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7D3225EB1E8D428A00BE285A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7D3225E51E8D428A00BE285A = {
+			isa = PBXGroup;
+			children = (
+				7D3225F01E8D428A00BE285A /* iMessageAttachment */,
+				7D3225EF1E8D428A00BE285A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7D3225EF1E8D428A00BE285A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D3225EE1E8D428A00BE285A /* iMessageAttachment.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7D3225F01E8D428A00BE285A /* iMessageAttachment */ = {
+			isa = PBXGroup;
+			children = (
+				7DB387BB1E9D149500D234FC /* AppDelegate.h */,
+				7DB387BC1E9D149500D234FC /* AppDelegate.m */,
+				7DB387BE1E9D14A600D234FC /* IMessageViewController.h */,
+				7DB387BF1E9D14A600D234FC /* IMessageViewController.m */,
+				7DD1F0741E9D169100CD0EFB /* IMessageAttachment */,
+				7DB387C11E9D14BB00D234FC /* Assets.xcassets */,
+				7DB387C21E9D14BB00D234FC /* Base.lproj */,
+				7DB387C71E9D14BB00D234FC /* Info.plist */,
+				7D3225F11E8D428A00BE285A /* Supporting Files */,
+			);
+			path = iMessageAttachment;
+			sourceTree = "<group>";
+		};
+		7D3225F11E8D428A00BE285A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7DB387CC1E9D14C400D234FC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7DB387C21E9D14BB00D234FC /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				7DB387C31E9D14BB00D234FC /* LaunchScreen.storyboard */,
+				7DB387C51E9D14BB00D234FC /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		7DD1F0741E9D169100CD0EFB /* IMessageAttachment */ = {
+			isa = PBXGroup;
+			children = (
+				7DD1F0751E9D169100CD0EFB /* Cells */,
+				7DD1F0811E9D169100CD0EFB /* IMConstants.h */,
+				7DD1F0821E9D169100CD0EFB /* IMessageCollectionView.h */,
+				7DD1F0831E9D169100CD0EFB /* IMessageCollectionView.m */,
+				7DD1F0841E9D169100CD0EFB /* IMessageViewControllerProtocol.h */,
+				7DD1F0851E9D169100CD0EFB /* Managers */,
+			);
+			name = IMessageAttachment;
+			path = ../../IMessageAttachment;
+			sourceTree = "<group>";
+		};
+		7DD1F0751E9D169100CD0EFB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7DD1F0761E9D169100CD0EFB /* IMCollectionViewCellProtocol.h */,
+				7DD1F0771E9D169100CD0EFB /* IMControlCameraCollectionViewCell.h */,
+				7DD1F0781E9D169100CD0EFB /* IMControlCameraCollectionViewCell.m */,
+				7DD1F0791E9D169100CD0EFB /* IMControlCollectionViewCell.h */,
+				7DD1F07A1E9D169100CD0EFB /* IMControlCollectionViewCell.m */,
+				7DD1F07B1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.h */,
+				7DD1F07C1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.m */,
+				7DD1F07D1E9D169100CD0EFB /* IMPhotoCollectionViewCell.h */,
+				7DD1F07E1E9D169100CD0EFB /* IMPhotoCollectionViewCell.m */,
+				7DD1F07F1E9D169100CD0EFB /* IMStreamCollectionViewCell.h */,
+				7DD1F0801E9D169100CD0EFB /* IMStreamCollectionViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7DD1F0851E9D169100CD0EFB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7DD1F0861E9D169100CD0EFB /* IMCaptureSessionManager.h */,
+				7DD1F0871E9D169100CD0EFB /* IMCaptureSessionManager.m */,
+				7DD1F0881E9D169100CD0EFB /* IMImagePickerManager.h */,
+				7DD1F0891E9D169100CD0EFB /* IMImagePickerManager.m */,
+				7DD1F08A1E9D169100CD0EFB /* IMPhotoAssetsManager.h */,
+				7DD1F08B1E9D169100CD0EFB /* IMPhotoAssetsManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7D3225ED1E8D428A00BE285A /* iMessageAttachment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D3226051E8D428A00BE285A /* Build configuration list for PBXNativeTarget "iMessageAttachment" */;
+			buildPhases = (
+				7D3225EA1E8D428A00BE285A /* Sources */,
+				7D3225EB1E8D428A00BE285A /* Frameworks */,
+				7D3225EC1E8D428A00BE285A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iMessageAttachment;
+			productName = iMessageAttachment;
+			productReference = 7D3225EE1E8D428A00BE285A /* iMessageAttachment.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7D3225E61E8D428A00BE285A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IM;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					7D3225ED1E8D428A00BE285A = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7D3225E91E8D428A00BE285A /* Build configuration list for PBXProject "iMessageAttachment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7D3225E51E8D428A00BE285A;
+			productRefGroup = 7D3225EF1E8D428A00BE285A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7D3225ED1E8D428A00BE285A /* iMessageAttachment */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7D3225EC1E8D428A00BE285A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DB387CB1E9D14BB00D234FC /* Info.plist in Resources */,
+				7DB387CA1E9D14BB00D234FC /* Main.storyboard in Resources */,
+				7DB387C81E9D14BB00D234FC /* Assets.xcassets in Resources */,
+				7DB387C91E9D14BB00D234FC /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7D3225EA1E8D428A00BE285A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DD1F0901E9D169100CD0EFB /* IMStreamCollectionViewCell.m in Sources */,
+				7DD1F0921E9D169100CD0EFB /* IMCaptureSessionManager.m in Sources */,
+				7DB387C01E9D14A600D234FC /* IMessageViewController.m in Sources */,
+				7DD1F0931E9D169100CD0EFB /* IMImagePickerManager.m in Sources */,
+				7DD1F0911E9D169100CD0EFB /* IMessageCollectionView.m in Sources */,
+				7DD1F08C1E9D169100CD0EFB /* IMControlCameraCollectionViewCell.m in Sources */,
+				7DB387CD1E9D14C400D234FC /* main.m in Sources */,
+				7DD1F08E1E9D169100CD0EFB /* IMControlPhotoLibraryCollectionViewCell.m in Sources */,
+				7DD1F08D1E9D169100CD0EFB /* IMControlCollectionViewCell.m in Sources */,
+				7DB387BD1E9D149500D234FC /* AppDelegate.m in Sources */,
+				7DD1F08F1E9D169100CD0EFB /* IMPhotoCollectionViewCell.m in Sources */,
+				7DD1F0941E9D169100CD0EFB /* IMPhotoAssetsManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7DB387C31E9D14BB00D234FC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DB387C41E9D14BB00D234FC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7DB387C51E9D14BB00D234FC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7DB387C61E9D14BB00D234FC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7D3226031E8D428A00BE285A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7D3226041E8D428A00BE285A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7D3226061E8D428A00BE285A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nekromarko.imessageAttachment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7D3226071E8D428A00BE285A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nekromarko.imessageAttachment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7D3225E91E8D428A00BE285A /* Build configuration list for PBXProject "iMessageAttachment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D3226031E8D428A00BE285A /* Debug */,
+				7D3226041E8D428A00BE285A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7D3226051E8D428A00BE285A /* Build configuration list for PBXNativeTarget "iMessageAttachment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D3226061E8D428A00BE285A /* Debug */,
+				7D3226071E8D428A00BE285A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7D3225E61E8D428A00BE285A /* Project object */;
+}
