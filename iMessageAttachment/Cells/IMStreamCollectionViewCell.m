@@ -7,7 +7,6 @@
 //
 
 #import "IMStreamCollectionViewCell.h"
-#import "IMCaptureSessionManager.h"
 #import "IMConstants.h"
 
 @interface IMStreamCollectionViewCell ()
@@ -16,7 +15,7 @@
 @property (nonatomic, strong) UIButton *switchCameraButton;
 @property (nonatomic, strong) UIImageView *shotImageView;
 
-@property (nonatomic, strong) IMCaptureSessionManager *captureSessionManager;
+@property (nonatomic, weak, readonly) IMCaptureSessionManager *captureSessionManager;
 
 @end
 
@@ -26,17 +25,9 @@
     self = [super initWithFrame:frame];
     if(self == nil)
         return nil;
-    
-    self.captureSessionManager = [IMCaptureSessionManager new];
-    [self.captureSessionManager startRunning];
-    
+
     self.streamView = [UIView new];
     [self.streamView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.captureSessionManager previewLayer:frame completion:^(AVCaptureVideoPreviewLayer *previewLayer) {
-        dispatch_async(dispatch_get_main_queue(), ^void() {
-                           [self.streamView.layer addSublayer:previewLayer];
-                       });
-    }];
     [self.contentView addSubview:self.streamView];
     
     self.switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -55,6 +46,20 @@
     
     return self;
 }
+
+- (void)setCaptureSessionManager:(IMCaptureSessionManager *)captureSessionManager {
+    if(captureSessionManager == _captureSessionManager)
+        return;
+    _captureSessionManager = captureSessionManager;
+    
+    [self.captureSessionManager previewLayer:self.frame completion:^(AVCaptureVideoPreviewLayer *previewLayer) {
+        dispatch_async(dispatch_get_main_queue(), ^void() {
+            [self.streamView.layer addSublayer:previewLayer];
+        });
+    }];
+}
+
+#pragma mark - Private
 
 - (void)switchCameraButtonTapped:(id)sender {
     [self.captureSessionManager switchCamera];
@@ -197,6 +202,10 @@
                                                                     multiplier: 1.0
                                                                       constant: 22.5f]];
     }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

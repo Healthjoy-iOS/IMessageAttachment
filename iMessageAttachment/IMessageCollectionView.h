@@ -15,4 +15,8 @@
 
 @property (nonatomic, weak) id<IMessageViewControllerProtocol> VCDelegate;
 
+- (void)startRunningStream;
+- (void)stopRunningStream;
+- (BOOL)isStreamRunning;
+
 @end

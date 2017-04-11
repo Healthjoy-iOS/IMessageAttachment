@@ -31,7 +31,7 @@
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
     AVCapturePhotoOutput *output = [AVCapturePhotoOutput new];
     
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         _captureSession = [AVCaptureSession new];
         self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
         if([self.captureSession canAddInput:input])
@@ -48,13 +48,23 @@
 }
 
 - (void)startRunning {
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [self.captureSession startRunning];
     });
 }
 
+- (void)stopRunning {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [self.captureSession stopRunning];
+    });
+}
+
+- (BOOL)isRunning {
+    return [self.captureSession isRunning];
+}
+
 - (void)previewLayer:(CGRect)frame completion:(void(^)(AVCaptureVideoPreviewLayer *previewLayer))completion  {
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         AVCaptureVideoPreviewLayer *layer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
         CGRect bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
         layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -65,9 +75,6 @@
 }
 
 - (void)switchCamera {
-    if(!self.captureSession)
-        return;
-    
     [self.captureSession beginConfiguration];
     
     AVCaptureInput* currentCameraInput = [_captureSession.inputs objectAtIndex:0];
@@ -107,24 +114,21 @@
 }
 
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock {
-    if(!self.captureSession)
-        return;
-    
     _captureImageBlock = captureImageBlock;
     
-    AVCapturePhotoOutput* currentCameraOutput = [_captureSession.outputs objectAtIndex:0];
+    AVCapturePhotoOutput* currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
     [currentCameraOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
 }
 
 #pragma mark - AVCapturePhotoCaptureDelegate
 -(void)captureOutput:(AVCapturePhotoOutput *)captureOutput didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error
 {
-    if (error) {
+    if(error) {
         NSLog(@"error : %@", error.localizedDescription);
         _captureImageBlock(nil);
     }
     
-    if (photoSampleBuffer) {
+    if(photoSampleBuffer) {
         NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
         UIImage *image = [UIImage imageWithData:data];
         _captureImageBlock(image);

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "IMCollectionViewCellProtocol.h"
+#import "IMCaptureSessionManager.h"
 
 @interface IMStreamCollectionViewCell : UICollectionViewCell<IMCollectionViewCellProtocol>
 
+- (void)setCaptureSessionManager:(IMCaptureSessionManager *)captureSessionManager;
 - (void)shotButtonTapped;
 
 @end

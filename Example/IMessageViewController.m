@@ -28,7 +28,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-        [self.attachmentCollectionView setContentOffset:kIMStartPositionOfCollectionView animated:YES];
+    [self.attachmentCollectionView setContentOffset:kIMStartPositionOfCollectionView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,6 +38,14 @@
 - (void)setupProperties {
     self.attachmentCollectionView.VCDelegate = self;
     self.attachmentConent = [NSMutableArray array];
+}
+
+- (IBAction)startOrStopStreamButtonDidSelect:(id)sender {
+    
+    if(![self.attachmentCollectionView isStreamRunning])
+        [self.attachmentCollectionView startRunningStream];
+    else
+        [self.attachmentCollectionView stopRunningStream];
 }
 
 #pragma mark - IMessageViewControllerProtocol

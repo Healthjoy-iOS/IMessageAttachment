@@ -16,17 +16,22 @@
 #import "IMPhotoCollectionViewCell.h"
 
 #import "IMImagePickerManager.h"
+#import "IMCaptureSessionManager.h"
 #import "IMPhotoAssetsManager.h"
 
 @interface IMessageCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IMImagePickerManager *imagePickerManager;
 @property (nonatomic, strong) IMPhotoAssetsManager *photoAssetsManager;
+@property (nonatomic, strong) IMCaptureSessionManager *captureSessionManager;
 
 @end
 
 
-@implementation IMessageCollectionView
+@implementation IMessageCollectionView {
+    
+    BOOL _isStreamRunning;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -42,6 +47,7 @@
     self.dataSource = self;
     
     self.imagePickerManager = [IMImagePickerManager new];
+    self.captureSessionManager = [IMCaptureSessionManager new];
     self.photoAssetsManager = [IMPhotoAssetsManager fetchAssets];
 }
 
@@ -80,6 +86,18 @@
     self.imagePickerManager.delegate = VCDelegate;
 }
 
+- (void)startRunningStream {
+    [self.captureSessionManager startRunning];
+}
+
+- (void)stopRunningStream {
+    [self.captureSessionManager stopRunning];
+}
+
+- (BOOL)isStreamRunning {
+    return [self.captureSessionManager isRunning];
+}
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -113,7 +131,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     [collectionView dequeueReusableCellWithReuseIdentifier:[self cellIDForItemAtIndexPath:indexPath] forIndexPath:indexPath];
     NSParameterAssert(cell != nil);
     
-    if(indexPath.row >= IMPhotoCell) {
+    if(indexPath.row == IMSteamCell) {
+        IMStreamCollectionViewCell *streamCell = (IMStreamCollectionViewCell *)cell;
+        [streamCell setCaptureSessionManager:self.captureSessionManager];
+    }
+    else if(indexPath.row >= IMPhotoCell) {
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         IMPhotoCollectionViewCell *photoCell = (IMPhotoCollectionViewCell *)cell;
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath targetSize:kIMTargetSize completion:^(UIImage *image) {

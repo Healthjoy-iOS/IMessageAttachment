@@ -14,6 +14,8 @@ typedef void(^MICaptureImageBlock)(UIImage *image);
 @interface IMCaptureSessionManager : NSObject
 
 - (void)startRunning;
+- (void)stopRunning;
+- (BOOL)isRunning;
 - (void)previewLayer:(CGRect)frame completion:(void(^)(AVCaptureVideoPreviewLayer *previewLayer))completion;
 - (void)switchCamera;
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock;
