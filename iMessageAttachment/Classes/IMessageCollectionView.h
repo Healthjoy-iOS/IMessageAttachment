@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "IMConstants.h"
 
-@protocol IMessageViewControllerProtocol;
+@protocol IMessageViewControllerDelegate;
 
 @interface IMessageCollectionView : UICollectionView
 
-@property (nonatomic, weak) id<IMessageViewControllerProtocol> VCDelegate;
+@property (nonatomic, weak) id<IMessageViewControllerDelegate> VCDelegate;
 
 - (void)startRunningStream;
 - (void)stopRunningStream;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol IMessageViewControllerProtocol <NSObject>
+@protocol IMessageViewControllerDelegate <NSObject>
 
 @required
 - (void)pickedAttachmentImage:(UIImage *)attachmentImage;

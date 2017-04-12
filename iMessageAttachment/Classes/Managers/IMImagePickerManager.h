@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol IMessageViewControllerProtocol;
+@protocol IMessageViewControllerDelegate;
 
 @interface IMImagePickerManager : NSObject
 
 - (void)takeAttachmentFromSourceType:(UIImagePickerControllerSourceType)sourceType;
 
-@property (nonatomic, weak) id<IMessageViewControllerProtocol> delegate;
+@property (nonatomic, weak) id<IMessageViewControllerDelegate> delegate;
 @property (nonatomic, assign) CGFloat compressionQuality;
 
 

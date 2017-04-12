@@ -8,9 +8,9 @@
 
 #import "IMessageViewController.h"
 #import "IMessageCollectionView.h"
-#import "IMessageViewControllerProtocol.h"
+#import "IMessageViewControllerDelegate.h"
 
-@interface IMessageViewController ()<IMessageViewControllerProtocol>
+@interface IMessageViewController ()<IMessageViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet IMessageCollectionView *attachmentCollectionView;
 @property (nonatomic, strong) NSMutableArray<UIImage*> *attachmentConent;

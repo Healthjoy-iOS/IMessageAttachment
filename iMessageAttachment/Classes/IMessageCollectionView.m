@@ -7,7 +7,7 @@
 //
 
 #import "IMessageCollectionView.h"
-#import "IMessageViewControllerProtocol.h"
+#import "IMessageViewControllerDelegate.h"
 #import "IMConstants.h"
 #import "IMCollectionViewCellProtocol.h"
 #import "IMControlCameraCollectionViewCell.h"
@@ -81,7 +81,7 @@
                       forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
 }
 
-- (void)setVCDelegate:(id<IMessageViewControllerProtocol>)VCDelegate {
+- (void)setVCDelegate:(id<IMessageViewControllerDelegate>)VCDelegate {
     _VCDelegate = VCDelegate;
     self.imagePickerManager.delegate = VCDelegate;
 }

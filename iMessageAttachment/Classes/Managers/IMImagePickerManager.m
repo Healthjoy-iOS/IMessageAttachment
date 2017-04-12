@@ -7,7 +7,7 @@
 //
 
 #import "IMImagePickerManager.h"
-#import "IMessageViewControllerProtocol.h"
+#import "IMessageViewControllerDelegate.h"
 
 @interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
