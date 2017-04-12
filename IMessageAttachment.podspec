@@ -13,9 +13,6 @@ Pod::Spec.new do |s|
   s.platform = :ios
   s.ios.deployment_target = '8.0'
   s.source_files = 'IMessageAttachment/Classes/**/*'
-  s.resource_bundles = {
-    'IMessageAttachment' => ['IMessageAttachment/Resources/**/*']
-  }
   s.requires_arc = true
   s.frameworks = 'Foundation', 'UIKit', 'AVFoundation', 'Photos'
 end
