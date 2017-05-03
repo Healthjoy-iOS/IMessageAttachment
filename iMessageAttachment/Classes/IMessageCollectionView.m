@@ -67,7 +67,7 @@
     self.contentOffset = CGPointMake(20, 5);
     self.showsHorizontalScrollIndicator = YES;
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-    flowLayout.sectionInset = UIEdgeInsetsMake(1, 20, 3, 20);
+    flowLayout.sectionInset = UIEdgeInsetsMake(1, 20, 6, 20);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     self.collectionViewLayout = flowLayout;
     
@@ -160,7 +160,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         IMStreamCollectionViewCell *streamCell = (IMStreamCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         [streamCell shotButtonTapped];
     }
-    else if(indexPath.row == IMPhotoCell)
+    else if(indexPath.row >= IMPhotoCell)
     {
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath targetSize:[self.photoAssetsManager maximumSize] completion:^(UIImage *image) {
