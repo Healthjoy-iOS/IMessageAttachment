@@ -27,8 +27,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [self.attachmentCollectionView setContentOffset:kIMStartPositionOfCollectionView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
