@@ -13,6 +13,7 @@
 @interface IMessageViewController ()<IMessageViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet IMessageCollectionView *attachmentCollectionView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *collectionViewHeightConstraint;
 @property (nonatomic, strong) NSMutableArray<UIImage*> *attachmentConent;
 
 @end
@@ -23,6 +24,7 @@
     [super viewDidLoad];
     
     [self setupProperties];
+    [self setupNotifications];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,12 +40,30 @@
     self.attachmentConent = [NSMutableArray array];
 }
 
-- (IBAction)startOrStopStreamButtonDidSelect:(id)sender {
+- (void)setupNotifications {
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateAttachmentHeight:)
+                                                 name:UIKeyboardDidShowNotification
+                                               object:nil];
+}
+
+- (IBAction)startOrStopStreamButtonDidSelect:(id)sender {
     if(![self.attachmentCollectionView isStreamRunning])
         [self.attachmentCollectionView startRunningStream];
     else
         [self.attachmentCollectionView stopRunningStream];
+}
+
+#pragma mark - Notifications
+
+- (void)updateAttachmentHeight:(NSNotification*)notification {
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGFloat height = [keyboardFrameBegin CGRectValue].size.height;
+    
+    self.collectionViewHeightConstraint.constant = height;
+    [self.attachmentCollectionView updateCollectionViewHeight:height];
 }
 
 #pragma mark - IMessageViewControllerProtocol

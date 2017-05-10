@@ -19,4 +19,6 @@
 - (void)stopRunningStream;
 - (BOOL)isStreamRunning;
 
+- (void)updateCollectionViewHeight:(CGFloat)height;
+
 @end

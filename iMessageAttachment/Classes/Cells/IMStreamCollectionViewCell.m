@@ -93,7 +93,7 @@
 
 
 - (void)setupLayouts {
-    self.contentView.backgroundColor = [UIColor blackColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
     self.streamView.backgroundColor = [UIColor blackColor];
     self.switchCameraButton.backgroundColor = [UIColor whiteColor];
     self.shotImageView.backgroundColor = [UIColor whiteColor];
@@ -108,7 +108,7 @@
                                                                         toItem: self.contentView
                                                                      attribute: NSLayoutAttributeWidth
                                                                     multiplier: 1.0
-                                                                      constant: 0.0f]];
+                                                                      constant: -5.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.streamView
                                                                      attribute: NSLayoutAttributeHeight
@@ -124,7 +124,7 @@
                                                                         toItem: self.contentView
                                                                      attribute: NSLayoutAttributeCenterX
                                                                     multiplier: 1.0
-                                                                      constant: 0.0f]];
+                                                                      constant: -5.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.streamView
                                                                      attribute: NSLayoutAttributeCenterY
@@ -139,7 +139,7 @@
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.switchCameraButton
                                                                      attribute: NSLayoutAttributeTop
                                                                      relatedBy: NSLayoutRelationEqual
-                                                                        toItem: self.contentView
+                                                                        toItem: self.streamView
                                                                      attribute: NSLayoutAttributeTop
                                                                     multiplier: 1.0
                                                                       constant: 10.0f]];
@@ -147,7 +147,7 @@
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.switchCameraButton
                                                                      attribute: NSLayoutAttributeTrailing
                                                                      relatedBy: NSLayoutRelationEqual
-                                                                        toItem: self.contentView
+                                                                        toItem: self.streamView
                                                                      attribute: NSLayoutAttributeTrailing
                                                                     multiplier: 1.0
                                                                       constant: -10.0f]];

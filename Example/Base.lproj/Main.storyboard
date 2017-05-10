@@ -66,6 +66,7 @@
                     </view>
                     <connections>
                         <outlet property="attachmentCollectionView" destination="koU-Q5-dDp" id="OAi-An-uN4"/>
+                        <outlet property="collectionViewHeightConstraint" destination="MNQ-6C-tcc" id="exU-Ap-Xie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

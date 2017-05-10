@@ -16,16 +16,4 @@
     self.label.text = @"Camera";
 }
 
-- (void)setupConstraints {
-    [super setupConstraints];
-    
-    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.corneredView
-                                                                 attribute: NSLayoutAttributeTop
-                                                                 relatedBy: NSLayoutRelationEqual
-                                                                    toItem: self.contentView
-                                                                 attribute: NSLayoutAttributeTop
-                                                                multiplier: 1.0
-                                                                  constant: 18.0f]];
-}
-
 @end

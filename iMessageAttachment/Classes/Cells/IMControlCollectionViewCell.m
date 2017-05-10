@@ -57,12 +57,20 @@
     
     {
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.corneredView
-                                                                     attribute: NSLayoutAttributeLeading
+                                                                     attribute: NSLayoutAttributeCenterX
                                                                      relatedBy: NSLayoutRelationEqual
                                                                         toItem: self.contentView
-                                                                     attribute: NSLayoutAttributeLeading
+                                                                     attribute: NSLayoutAttributeCenterX
                                                                     multiplier: 1.0
-                                                                      constant: 0]];
+                                                                      constant: 0.0f]];
+        
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.corneredView
+                                                                     attribute: NSLayoutAttributeCenterY
+                                                                     relatedBy: NSLayoutRelationEqual
+                                                                        toItem: self.contentView
+                                                                     attribute: NSLayoutAttributeCenterY
+                                                                    multiplier: 1.0
+                                                                      constant: 0.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.corneredView
                                                                      attribute: NSLayoutAttributeWidth

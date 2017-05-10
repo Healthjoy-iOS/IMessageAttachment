@@ -19,11 +19,14 @@
 #import "IMCaptureSessionManager.h"
 #import "IMPhotoAssetsManager.h"
 
+#import "IMessageCollectionViewHelper.h"
+
 @interface IMessageCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) IMImagePickerManager *imagePickerManager;
 @property (nonatomic, strong) IMPhotoAssetsManager *photoAssetsManager;
 @property (nonatomic, strong) IMCaptureSessionManager *captureSessionManager;
+@property (nonatomic, strong) IMessageCollectionViewHelper *collectionViewHelper;
 
 @end
 
@@ -42,13 +45,13 @@
 }
 
 - (void)setupProperties {
-    
     self.delegate = self;
     self.dataSource = self;
     
     self.imagePickerManager = [IMImagePickerManager new];
     self.captureSessionManager = [IMCaptureSessionManager new];
     self.photoAssetsManager = [IMPhotoAssetsManager fetchAssets];
+    self.collectionViewHelper = [IMessageCollectionViewHelper new];
 }
 
 - (void)setupNotifications {
@@ -64,10 +67,9 @@
                                             blue: 217 / 255.f
                                            alpha: 1];
     self.showsVerticalScrollIndicator = NO;
-    self.contentOffset = CGPointMake(20, 5);
     self.showsHorizontalScrollIndicator = YES;
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-    flowLayout.sectionInset = UIEdgeInsetsMake(1, 20, 6, 20);
+    flowLayout.sectionInset = UIEdgeInsetsMake(1, 0, 1, 0);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     self.collectionViewLayout = flowLayout;
     
@@ -96,6 +98,12 @@
 
 - (BOOL)isStreamRunning {
     return [self.captureSessionManager isRunning];
+}
+
+- (void)updateCollectionViewHeight:(CGFloat)height {
+    [self.collectionViewHelper setKeyboardHeight:height];
+    [self layoutIfNeeded];
+    [self reloadData];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -138,7 +146,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     else if(indexPath.row >= IMPhotoCell) {
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         IMPhotoCollectionViewCell *photoCell = (IMPhotoCollectionViewCell *)cell;
-        [self.photoAssetsManager photoAtIndexPath:photoIndexPath targetSize:kIMTargetSize completion:^(UIImage *image) {
+        [self.photoAssetsManager photoAtIndexPath:photoIndexPath
+                                       targetSize:self.collectionViewHelper.targetSize
+                                       completion:^(UIImage *image) {
             photoCell.photoImageView.image = image;
         }];
     }
@@ -163,7 +173,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     else if(indexPath.row >= IMPhotoCell)
     {
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
-        [self.photoAssetsManager photoAtIndexPath:photoIndexPath targetSize:[self.photoAssetsManager maximumSize] completion:^(UIImage *image) {
+        [self.photoAssetsManager photoAtIndexPath:photoIndexPath
+                                       targetSize:[self.photoAssetsManager maximumSize]
+                                       completion:^(UIImage *image) {
             [self.VCDelegate pickedAttachmentImage:image];
         }];
     }
@@ -181,11 +193,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 - (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize cellSize = CGSizeMake(0, 0);
     if(indexPath.row == IMControlCameraCell || indexPath.row == IMControlPhotoLibraryCell)
-        cellSize = kIMControlCameraCellSize;
+        cellSize = self.collectionViewHelper.controlCameraCellSize;
     if(indexPath.row == IMSteamCell)
-        cellSize = kIMStreamCellSize;
+        cellSize = self.collectionViewHelper.streamCellSize;
     if(indexPath.row >= IMPhotoCell)
-        cellSize = kIMPhotoCellSize;
+        cellSize = self.collectionViewHelper.photoCellSize;
     
     return cellSize;
 }

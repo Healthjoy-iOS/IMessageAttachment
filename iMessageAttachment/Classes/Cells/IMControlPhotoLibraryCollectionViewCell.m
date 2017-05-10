@@ -16,16 +16,4 @@
     self.label.text = @"Photo Library";
 }
 
-- (void)setupConstraints {
-    [super setupConstraints];
-    
-    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.corneredView
-                                                                 attribute: NSLayoutAttributeTop
-                                                                 relatedBy: NSLayoutRelationEqual
-                                                                    toItem: self.contentView
-                                                                 attribute: NSLayoutAttributeTop
-                                                                multiplier: 1.0
-                                                                  constant: 11.0f]];
-}
-
 @end
