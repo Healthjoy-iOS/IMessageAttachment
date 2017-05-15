@@ -31,6 +31,7 @@
     [self.contentView addSubview:self.streamView];
     
     self.switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.switchCameraButton setImage:[UIImage imageNamed:@"im_switch_camera"] forState:UIControlStateNormal];
     [self.switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.switchCameraButton addTarget:self
                                 action:@selector(switchCameraButtonTapped:)
@@ -38,6 +39,7 @@
     [self.contentView addSubview:self.switchCameraButton];
     
     self.shotImageView = [UIImageView new];
+    self.shotImageView.image = [UIImage imageNamed:@"im_takephoto"];
     [self.shotImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.contentView addSubview:self.shotImageView];
     
@@ -95,8 +97,6 @@
 - (void)setupLayouts {
     self.contentView.backgroundColor = [UIColor clearColor];
     self.streamView.backgroundColor = [UIColor blackColor];
-    self.switchCameraButton.backgroundColor = [UIColor whiteColor];
-    self.shotImageView.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)setupConstraints {
@@ -158,7 +158,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 35.0f]];
+                                                                      constant: 24.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.switchCameraButton
                                                                      attribute: NSLayoutAttributeHeight
@@ -166,7 +166,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 22.5f]];
+                                                                      constant: 24.0f]];
     }
     
     {
@@ -184,7 +184,7 @@
                                                                         toItem: self.contentView
                                                                      attribute: NSLayoutAttributeCenterX
                                                                     multiplier: 1.0
-                                                                      constant: 0.0f]];
+                                                                      constant: -5.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.shotImageView
                                                                      attribute: NSLayoutAttributeWidth
@@ -192,7 +192,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 35.0f]];
+                                                                      constant: 24.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.shotImageView
                                                                      attribute: NSLayoutAttributeHeight
@@ -200,7 +200,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 22.5f]];
+                                                                      constant: 24.0f]];
     }
 }
 

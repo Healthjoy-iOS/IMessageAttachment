@@ -43,8 +43,6 @@
     self.corneredView.backgroundColor = [UIColor whiteColor];
     self.corneredView.layer.cornerRadius = 15.f;
     
-    self.iconImageView.backgroundColor = [UIColor blackColor];
-    
     self.label.numberOfLines = 0;
     self.label.textColor = [UIColor blackColor];
     self.label.font = [UIFont systemFontOfSize:18];
@@ -112,7 +110,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 35.0f]];
+                                                                      constant: 24.0f]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.iconImageView
                                                                      attribute: NSLayoutAttributeHeight
@@ -120,7 +118,7 @@
                                                                         toItem: nil
                                                                      attribute: NSLayoutAttributeNotAnAttribute
                                                                     multiplier: 1.0
-                                                                      constant: 22.5f]];
+                                                                      constant: 24.0f]];
     }
     
     {

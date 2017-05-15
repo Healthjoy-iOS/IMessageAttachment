@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1C0AD81EC9B8FD00EE48B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C0AD71EC9B8FD00EE48B9 /* Assets.xcassets */; };
 		7D27E3C41EC3316100E60C09 /* IMessageCollectionViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D27E3C31EC3316100E60C09 /* IMessageCollectionViewHelper.m */; };
 		7D4940FB1E9E4D5F003B7644 /* IMControlCameraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4940E61E9E4D5F003B7644 /* IMControlCameraCollectionViewCell.m */; };
 		7D4940FC1E9E4D5F003B7644 /* IMControlCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4940E81E9E4D5F003B7644 /* IMControlCollectionViewCell.m */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D1C0AD71EC9B8FD00EE48B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D27E3C21EC3316100E60C09 /* IMessageCollectionViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMessageCollectionViewHelper.h; sourceTree = "<group>"; };
 		7D27E3C31EC3316100E60C09 /* IMessageCollectionViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMessageCollectionViewHelper.m; sourceTree = "<group>"; };
 		7D3225EE1E8D428A00BE285A /* iMessageAttachment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageAttachment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 		7D4940FA1E9E4D5F003B7644 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7D1C0AD71EC9B8FD00EE48B9 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				7DB387CA1E9D14BB00D234FC /* Main.storyboard in Resources */,
 				7DB387C81E9D14BB00D234FC /* Assets.xcassets in Resources */,
 				7DB387C91E9D14BB00D234FC /* LaunchScreen.storyboard in Resources */,
+				7D1C0AD81EC9B8FD00EE48B9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

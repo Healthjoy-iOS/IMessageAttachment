@@ -16,7 +16,6 @@
 #define kIMStreamCollectionViewCell @"IMStreamCollectionViewCell"
 #define kIMPhotoCollectionViewCell @"IMPhotoCollectionViewCell"
 
-#define kIMStartPositionOfCollectionView CGPointMake(kIMControlCameraCellSize.width, 0)
 #define kIMStaticControlAmount 3
 
 #endif /* IMConstants */
