@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMBundleLocator.h"
 #import "IMCollectionViewCellProtocol.h"
 
 @interface IMControlCollectionViewCell : UICollectionViewCell<IMCollectionViewCellProtocol>

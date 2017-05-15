@@ -13,7 +13,9 @@
 - (void)setupLayouts {
     [super setupLayouts];
     
-    self.iconImageView.image = [UIImage imageNamed:@"ic_add_a_photo"];
+    self.iconImageView.image = [UIImage imageNamed:@"ic_add_a_photo"
+                                          inBundle:[IMBundleLocator resourcesBundle]
+                     compatibleWithTraitCollection:nil];
     self.label.text = @"Camera";
 }
 

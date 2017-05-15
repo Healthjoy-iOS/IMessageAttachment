@@ -20,6 +20,7 @@
 		7D29ECB31EC9DD8400104907 /* ic_takephoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D29ECA71EC9DD8400104907 /* ic_takephoto.png */; };
 		7D29ECB41EC9DD8400104907 /* ic_takephoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D29ECA81EC9DD8400104907 /* ic_takephoto@2x.png */; };
 		7D29ECB51EC9DD8400104907 /* ic_takephoto@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D29ECA91EC9DD8400104907 /* ic_takephoto@3x.png */; };
+		7D29ECC71EC9E80000104907 /* IMBundleLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D29ECC61EC9E80000104907 /* IMBundleLocator.m */; };
 		7D4940FB1E9E4D5F003B7644 /* IMControlCameraCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4940E61E9E4D5F003B7644 /* IMControlCameraCollectionViewCell.m */; };
 		7D4940FC1E9E4D5F003B7644 /* IMControlCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4940E81E9E4D5F003B7644 /* IMControlCollectionViewCell.m */; };
 		7D4940FD1E9E4D5F003B7644 /* IMControlPhotoLibraryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D4940EA1E9E4D5F003B7644 /* IMControlPhotoLibraryCollectionViewCell.m */; };
@@ -53,6 +54,8 @@
 		7D29ECA71EC9DD8400104907 /* ic_takephoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_takephoto.png; sourceTree = "<group>"; };
 		7D29ECA81EC9DD8400104907 /* ic_takephoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_takephoto@2x.png"; sourceTree = "<group>"; };
 		7D29ECA91EC9DD8400104907 /* ic_takephoto@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_takephoto@3x.png"; sourceTree = "<group>"; };
+		7D29ECC51EC9E80000104907 /* IMBundleLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBundleLocator.h; sourceTree = "<group>"; };
+		7D29ECC61EC9E80000104907 /* IMBundleLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMBundleLocator.m; sourceTree = "<group>"; };
 		7D3225EE1E8D428A00BE285A /* iMessageAttachment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iMessageAttachment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4940E41E9E4D5F003B7644 /* IMCollectionViewCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCollectionViewCellProtocol.h; sourceTree = "<group>"; };
 		7D4940E51E9E4D5F003B7644 /* IMControlCameraCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMControlCameraCollectionViewCell.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 				7D4940E31E9E4D5F003B7644 /* Cells */,
 				7D4940EF1E9E4D5F003B7644 /* IMConstants.h */,
 				7D4940F21E9E4D5F003B7644 /* IMessageViewControllerDelegate.h */,
+				7D29ECC51EC9E80000104907 /* IMBundleLocator.h */,
+				7D29ECC61EC9E80000104907 /* IMBundleLocator.m */,
 				7D4940F01E9E4D5F003B7644 /* IMessageCollectionView.h */,
 				7D4940F11E9E4D5F003B7644 /* IMessageCollectionView.m */,
 				7D27E3C21EC3316100E60C09 /* IMessageCollectionViewHelper.h */,
@@ -307,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D29ECC71EC9E80000104907 /* IMBundleLocator.m in Sources */,
 				7D4940FF1E9E4D5F003B7644 /* IMStreamCollectionViewCell.m in Sources */,
 				7D4941011E9E4D5F003B7644 /* IMCaptureSessionManager.m in Sources */,
 				7DB387C01E9D14A600D234FC /* IMessageViewController.m in Sources */,

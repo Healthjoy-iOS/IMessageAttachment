@@ -13,7 +13,9 @@
 - (void)setupLayouts {
     [super setupLayouts];
     
-    self.iconImageView.image = [UIImage imageNamed:@"ic_photo_library"];
+    self.iconImageView.image = [UIImage imageNamed:@"ic_photo_library"
+                                          inBundle:[IMBundleLocator resourcesBundle]
+                     compatibleWithTraitCollection:nil];
     self.label.text = @"Photo Library";
 }
 

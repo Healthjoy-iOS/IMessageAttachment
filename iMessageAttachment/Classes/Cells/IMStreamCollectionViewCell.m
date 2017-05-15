@@ -7,6 +7,7 @@
 //
 
 #import "IMStreamCollectionViewCell.h"
+#import "IMBundleLocator.h"
 #import "IMConstants.h"
 
 @interface IMStreamCollectionViewCell ()
@@ -31,7 +32,10 @@
     [self.contentView addSubview:self.streamView];
     
     self.switchCameraButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.switchCameraButton setImage:[UIImage imageNamed:@"ic_switch_camera"] forState:UIControlStateNormal];
+    [self.switchCameraButton setImage:[UIImage imageNamed:@"ic_switch_camera"
+                                                 inBundle:[IMBundleLocator resourcesBundle]
+                            compatibleWithTraitCollection:nil]
+                             forState:UIControlStateNormal];
     [self.switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.switchCameraButton addTarget:self
                                 action:@selector(switchCameraButtonTapped:)
@@ -39,7 +43,9 @@
     [self.contentView addSubview:self.switchCameraButton];
     
     self.shotImageView = [UIImageView new];
-    self.shotImageView.image = [UIImage imageNamed:@"ic_takephoto"];
+    self.shotImageView.image = [UIImage imageNamed:@"ic_takephoto"
+                                          inBundle:[IMBundleLocator resourcesBundle]
+                     compatibleWithTraitCollection:nil];
     [self.shotImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.contentView addSubview:self.shotImageView];
     
