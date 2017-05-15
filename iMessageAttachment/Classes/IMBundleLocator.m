@@ -11,7 +11,8 @@
 @implementation IMBundleLocator
 
 + (NSBundle *)resourcesBundle {
-    NSBundle *ourBundle = [NSBundle bundleWithPath:@"IMessageAttachment.bundle"];
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:@"IMessageAttachment" ofType:@"bundle"];
+    NSBundle *ourBundle = [NSBundle bundleWithPath:bundlePath];
     if (ourBundle == nil) {
         ourBundle = [NSBundle mainBundle];
     }
