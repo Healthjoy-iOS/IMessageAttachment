@@ -13,7 +13,7 @@
 - (void)setupLayouts {
     [super setupLayouts];
     
-    self.iconImageView.image = [UIImage imageNamed:@"im_camera"];
+    self.iconImageView.image = [UIImage imageNamed:@"ic_add_a_photo"];
     self.label.text = @"Camera";
 }
 

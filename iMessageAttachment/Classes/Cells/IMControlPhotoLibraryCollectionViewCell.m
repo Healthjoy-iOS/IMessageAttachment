@@ -13,7 +13,7 @@
 - (void)setupLayouts {
     [super setupLayouts];
     
-    self.iconImageView.image = [UIImage imageNamed:@"im_photo_library"];
+    self.iconImageView.image = [UIImage imageNamed:@"ic_photo_library"];
     self.label.text = @"Photo Library";
 }
 
