@@ -13,18 +13,37 @@
 
 @property(nonatomic, strong) PHFetchResult *assetsFetchResults;
 @property(nonatomic, strong) PHCachingImageManager *imageManager;
+@property(nonatomic, weak) UICollectionView *collectionView;
 
 @end
 
 @implementation IMPhotoAssetsManager
 
-+ (instancetype)fetchAssets {
-    IMPhotoAssetsManager *photoAssetsManager = [IMPhotoAssetsManager new];
-    PHFetchOptions *options = [PHFetchOptions new];
-    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-    photoAssetsManager.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
-    photoAssetsManager.imageManager = [[PHCachingImageManager alloc] init];
-    return photoAssetsManager;
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView {
+    self = [super init];
+    
+    if(self == nil)
+        return nil;
+    
+    self.collectionView = collectionView;
+    
+    return self;
+}
+
+- (void)fetchAssets {
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        if(status == PHAuthorizationStatusAuthorized) {
+            dispatch_async(dispatch_get_main_queue(), ^void()
+                           {
+                               PHFetchOptions *options = [PHFetchOptions new];
+                               options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                               self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
+                               self.imageManager = [PHCachingImageManager new];
+                               
+                               [self.collectionView reloadData];
+                           });
+        }
+    }];
 }
 
 - (NSUInteger)photoCount {

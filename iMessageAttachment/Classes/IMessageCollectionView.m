@@ -50,7 +50,8 @@
     
     self.imagePickerManager = [IMImagePickerManager new];
     self.captureSessionManager = [IMCaptureSessionManager new];
-    self.photoAssetsManager = [IMPhotoAssetsManager fetchAssets];
+    self.photoAssetsManager = [[IMPhotoAssetsManager alloc] initWithCollectionView:self];
+    [self.photoAssetsManager fetchAssets];
     self.collectionViewHelper = [IMessageCollectionViewHelper new];
 }
 

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
+#import <UIKit/UICollectionView.h>
 
 @interface IMPhotoAssetsManager : NSObject
 
-+ (instancetype)fetchAssets;
+- (instancetype)initWithCollectionView:(UICollectionView *)collectionView;
+- (void)fetchAssets;
 
 - (NSUInteger)photoCount;
 - (CGSize)maximumSize;
