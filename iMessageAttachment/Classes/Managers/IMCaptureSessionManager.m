@@ -116,8 +116,10 @@
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock {
     _captureImageBlock = captureImageBlock;
     
-    AVCapturePhotoOutput* currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
-    [currentCameraOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
+    AVCapturePhotoOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
+    AVCaptureConnection *connection = [currentCameraOutput connectionWithMediaType:AVMediaTypeVideo];
+    if(connection.active)
+        [currentCameraOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
 }
 
 #pragma mark - AVCapturePhotoCaptureDelegate
