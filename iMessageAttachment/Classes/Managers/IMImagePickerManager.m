@@ -34,7 +34,7 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = sourceType;
-    
+    picker.navigationBar.tintColor = [UIColor whiteColor];
     [(UIViewController *)self.delegate presentViewController:picker
                        animated:YES
                      completion:nil];
