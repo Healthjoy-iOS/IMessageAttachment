@@ -1,7 +1,7 @@
 
-## A simple iOS photo attachment control with instant library access and photo streaming.
+## A simple iOS photo attachment control with feed of photos from library and camera streaming for capture photo.
 
-IMessageAttachment inspired and copied from iMessage attachment control.
+IMessageAttachment inspired and copied from iMessage attachment control. 
 
 Attachment control from iMessage:<br />
 [![Alt][screenshot1_thumb]][screenshot1]    [![Alt][screenshot2_thumb]][screenshot2]
@@ -27,15 +27,14 @@ Works on iOS 7+.
 
 ## Usage
 
-IMessageAttachment is just a `UICollectionView` with controls, designed for use with keyboard like in iMessage application. Set IMessageCollectionView in your viewController, simply set the delegate (which must conform to IMessageViewControllerDelegate) and implement the 1 required delegate methods to provide `UIImage` from controls.
+IMessageAttachment is just a `UICollectionView` with controls, designed for use with keyboard like in iMessage application. Setup IMessageCollectionView in your viewController, set the delegate (which must conform to IMessageViewControllerDelegate) and implement the 1 required delegate methods to provide `UIImage` from controls.
 
 See the code snippet below for an example of how to implement the IMessageAttachment control. There is also a simple demo app within the project.
 
 ```obj-c
-// define IMessageCollectionView in storyboard
+// define IMessageCollectionView
 @property (nonatomic, weak) IBOutlet IMessageCollectionView *attachmentCollectionView;
-// for automatically height
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *collectionViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *attachmentCollectionViewHeightConstraint;
 
 // set delegate in viewDidLoad()
 self.attachmentCollectionView.VCDelegate = self;
@@ -61,7 +60,7 @@ NSDictionary* keyboardInfo = [notification userInfo];
 NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
 CGFloat height = [keyboardFrameBegin CGRectValue].size.height;
 
-self.collectionViewHeightConstraint.constant = height;
+self.attachmentCollectionViewHeightConstraint.constant = height;
 [self.attachmentCollectionView updateCollectionViewHeight:height];
 }
 ```
