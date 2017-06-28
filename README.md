@@ -1,7 +1,7 @@
 
-## A simple iOS photo attachment control with feed of photos from library and camera streaming for capture photo.
+## IMessageAttachment inspired and copied from iMessage attachment control. 
 
-IMessageAttachment inspired and copied from iMessage attachment control. 
+A simple iOS photo attachment control with feed of photos from library and camera streaming for capture photo.
 
 Attachment control from iMessage:<br />
 [![Alt][screenshot1_thumb]][screenshot1]    [![Alt][screenshot2_thumb]][screenshot2]
@@ -41,7 +41,7 @@ self.attachmentCollectionView.VCDelegate = self;
 
 // define IMessageViewControllerProtocol
 - (void)pickedAttachmentImage:(UIImage *)attachmentImage {
-[self.attachmentContent addObject:attachmentImage];
+    [self.attachmentContent addObject:attachmentImage];
 }
 ```
 
@@ -50,18 +50,18 @@ You can update attachmentCollectionView's height automatically by take keyboard'
 ```obj-c
 // setup notification
 [[NSNotificationCenter defaultCenter] addObserver:self
-selector:@selector(updateAttachmentHeight:)
-name:UIKeyboardDidShowNotification
-object:nil];
+                                         selector:@selector(updateAttachmentHeight:)
+                                             name:UIKeyboardDidShowNotification
+                                           object:nil];
 
 // update attachmentCollectionView's height
 - (void)updateAttachmentHeight:(NSNotification*)notification {
-NSDictionary* keyboardInfo = [notification userInfo];
-NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
-CGFloat height = [keyboardFrameBegin CGRectValue].size.height;
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGFloat height = [keyboardFrameBegin CGRectValue].size.height;
 
-self.attachmentCollectionViewHeightConstraint.constant = height;
-[self.attachmentCollectionView updateCollectionViewHeight:height];
+    self.attachmentCollectionViewHeightConstraint.constant = height;
+    [self.attachmentCollectionView updateCollectionViewHeight:height];
 }
 ```
 
