@@ -1,7 +1,7 @@
 
 ## A simple iOS photo attachment control with feed of photos from library and camera streaming for capture photo.
 
-IMessageAttachment inspired and copied from iMessage attachment control.
+IMessageAttachment inspired and copied from iMessage attachment control.<br />
 Attachment control from iMessage:<br />
 [![Alt][screenshot1_thumb]][screenshot1]    [![Alt][screenshot2_thumb]][screenshot2]
 <br />IMessageAttachment example:<br />    
