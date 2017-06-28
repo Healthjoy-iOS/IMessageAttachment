@@ -14,7 +14,7 @@
 
 @property (nonatomic, weak) IBOutlet IMessageCollectionView *attachmentCollectionView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *collectionViewHeightConstraint;
-@property (nonatomic, strong) NSMutableArray<UIImage*> *attachmentConent;
+@property (nonatomic, strong) NSMutableArray<UIImage*> *attachmentContent;
 
 @end
 
@@ -37,7 +37,7 @@
 
 - (void)setupProperties {
     self.attachmentCollectionView.VCDelegate = self;
-    self.attachmentConent = [NSMutableArray array];
+    self.attachmentContent = [NSMutableArray array];
 }
 
 - (void)setupNotifications {
@@ -69,7 +69,7 @@
 #pragma mark - IMessageViewControllerProtocol
 
 - (void)pickedAttachmentImage:(UIImage *)attachmentImage {
-    [self.attachmentConent addObject:attachmentImage];
+    [self.attachmentContent addObject:attachmentImage];
 }
 
 @end
