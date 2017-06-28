@@ -13,7 +13,7 @@
 @interface IMessageViewController ()<IMessageViewControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet IMessageCollectionView *attachmentCollectionView;
-@property (nonatomic, weak) IBOutlet NSLayoutConstraint *collectionViewHeightConstraint;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *attachmentCollectionViewHeightConstraint;
 @property (nonatomic, strong) NSMutableArray<UIImage*> *attachmentContent;
 
 @end
@@ -62,7 +62,7 @@
     NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
     CGFloat height = [keyboardFrameBegin CGRectValue].size.height;
     
-    self.collectionViewHeightConstraint.constant = height;
+    self.attachmentCollectionViewHeightConstraint.constant = height;
     [self.attachmentCollectionView updateCollectionViewHeight:height];
 }
 
