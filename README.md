@@ -23,7 +23,7 @@ Attachment control from iMessage:<br />
 [screenshot6_thumb]: https://raw.githubusercontent.com/nekromarko/IMessageAttachment/master/Screenshots/imp1t.PNG
 [screenshot6]: https://raw.githubusercontent.com/nekromarko/IMessageAttachment/master/Screenshots/imp1.PNG
 
-Works on iOS 7+.
+Works on iOS 8+.
 
 ## Usage
 
