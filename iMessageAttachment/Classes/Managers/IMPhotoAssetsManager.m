@@ -37,6 +37,7 @@
                            {
                                PHFetchOptions *options = [PHFetchOptions new];
                                options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                               options.predicate = [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
                                self.assetsFetchResults = [PHAsset fetchAssetsWithOptions:options];
                                self.imageManager = [PHCachingImageManager new];
                                
