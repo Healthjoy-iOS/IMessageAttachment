@@ -9,7 +9,7 @@
 #import "IMCaptureSessionManager.h"
 #import <UIKit/UIImage.h>
 
-@interface IMCaptureSessionManager ()<AVCapturePhotoCaptureDelegate, UIAlertViewDelegate>
+@interface IMCaptureSessionManager ()
 
 @property (nonatomic, readonly) AVCaptureSession *captureSession;
 
@@ -29,19 +29,17 @@
     AVCaptureDevice *captureDevice = [[AVCaptureDevice devices] firstObject];
     NSError *error = nil;
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    AVCapturePhotoOutput *output = [AVCapturePhotoOutput new];
+    AVCaptureStillImageOutput *output = [AVCaptureStillImageOutput new];
+    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    [output setOutputSettings:outputSettings];
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         _captureSession = [AVCaptureSession new];
         self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
         if([self.captureSession canAddInput:input])
-        {
             [self.captureSession addInput:input];
-        }
         if([self.captureSession canAddOutput:output])
-        {
             [self.captureSession addOutput:output];
-        }
     });
     
     return self;
@@ -82,24 +80,16 @@
     
     AVCaptureDevice *newCamera = nil;
     if(((AVCaptureDeviceInput*)currentCameraInput).device.position == AVCaptureDevicePositionBack)
-    {
         newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
-    }
     else
-    {
         newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
-    }
     
     NSError *err = nil;
     AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:newCamera error:&err];
     if(!newVideoInput || err)
-    {
-        NSLog(@"Error creating capture device input: %@", err.localizedDescription);
-    }
+        NSLog(@"[IMessageAttachment] Error creating capture device input: %@", err.localizedDescription);
     else
-    {
         [self.captureSession addInput:newVideoInput];
-    }
     
     [self.captureSession commitConfiguration];
 }
@@ -107,52 +97,28 @@
 - (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition) position {
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices)
-    {
         if ([device position] == position) return device;
-    }
+    
     return nil;
 }
 
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock {
-    if(!self.captureSession.outputs || self.captureSession.outputs.count == 0)
-    {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"App doesn't have access to your photos. To enable access, tap Settings and turn on Photos."
-                                   delegate:self
-                          cancelButtonTitle:@"Cancel"
-                          otherButtonTitles:@"Settings", nil] show];
-        return;
-    }
     _captureImageBlock = captureImageBlock;
     
-    AVCapturePhotoOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
+    AVCaptureStillImageOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
     AVCaptureConnection *connection = [currentCameraOutput connectionWithMediaType:AVMediaTypeVideo];
-    if(connection.active)
-        [currentCameraOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
-}
-
-#pragma mark - AVCapturePhotoCaptureDelegate
--(void)captureOutput:(AVCapturePhotoOutput *)captureOutput didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error
-{
-    if(error) {
-        NSLog(@"error : %@", error.localizedDescription);
-        _captureImageBlock(nil);
-    }
-    
-    if(photoSampleBuffer) {
-        NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
-        UIImage *image = [UIImage imageWithData:data];
-        _captureImageBlock(image);
-    }
-}
-
-#pragma mark - AlertView
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if(buttonIndex == 1)
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    if(connection.active) {
+        [currentCameraOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+            if(error)
+                NSLog(@"[IMessageAttachment] Error: %@", error.localizedDescription);
+            
+            if(imageDataSampleBuffer) {
+                NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+                UIImage *image = [[UIImage alloc] initWithData:imageData];
+                
+                _captureImageBlock(image);
+            }
+        }];
     }
 }
 
