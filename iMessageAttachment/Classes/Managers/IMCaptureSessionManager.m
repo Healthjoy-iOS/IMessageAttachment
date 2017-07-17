@@ -9,7 +9,7 @@
 #import "IMCaptureSessionManager.h"
 #import <UIKit/UIImage.h>
 
-@interface IMCaptureSessionManager ()<AVCapturePhotoCaptureDelegate>
+@interface IMCaptureSessionManager ()<AVCapturePhotoCaptureDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, readonly) AVCaptureSession *captureSession;
 
@@ -77,7 +77,7 @@
 - (void)switchCamera {
     [self.captureSession beginConfiguration];
     
-    AVCaptureInput* currentCameraInput = [_captureSession.inputs objectAtIndex:0];
+    AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
     [self.captureSession removeInput:currentCameraInput];
     
     AVCaptureDevice *newCamera = nil;
@@ -114,6 +114,15 @@
 }
 
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock {
+    if(!self.captureSession.outputs || self.captureSession.outputs.count == 0)
+    {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:@"App doesn't have access to your photos. To enable access, tap Settings and turn on Photos."
+                                   delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"Settings", nil] show];
+        return;
+    }
     _captureImageBlock = captureImageBlock;
     
     AVCapturePhotoOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
@@ -134,6 +143,16 @@
         NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
         UIImage *image = [UIImage imageWithData:data];
         _captureImageBlock(image);
+    }
+}
+
+#pragma mark - AlertView
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if(buttonIndex == 1)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }
 }
 
