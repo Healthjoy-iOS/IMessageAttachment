@@ -7,9 +7,11 @@
 //
 
 #import "IMImagePickerManager.h"
+#import <AVFoundation/AVFoundation.h>
 #import "IMessageViewControllerDelegate.h"
 
-@interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
 
 @end
 
@@ -31,13 +33,25 @@
         sourceType == UIImagePickerControllerSourceTypeCamera)
         return;
     
+    NSString *mediaType = AVMediaTypeVideo;
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    if(sourceType == UIImagePickerControllerSourceTypeCamera &&
+       authStatus == AVAuthorizationStatusDenied) {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:@"App doesn't have access to your photos. To enable access, tap Settings and turn on Photos."
+                                   delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"Settings", nil] show];
+        return;
+    }
+    
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = sourceType;
     picker.navigationBar.tintColor = [UIColor whiteColor];
     [(UIViewController *)self.delegate presentViewController:picker
-                       animated:YES
-                     completion:nil];
+                                                    animated:YES
+                                                  completion:nil];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -54,6 +68,13 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma marko UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex == 1)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
 
 @end
