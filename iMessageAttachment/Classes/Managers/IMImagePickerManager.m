@@ -9,9 +9,11 @@
 #import "IMImagePickerManager.h"
 #import <AVFoundation/AVFoundation.h>
 #import "IMessageViewControllerDelegate.h"
+#import "IMPermissionsHelper.h"
 
+@interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIAlertViewDelegate>
+@property (nonatomic, strong) IMPermissionsHelper *permissionHelper;
 
 @end
 
@@ -23,6 +25,7 @@
     if(self == nil)
         return nil;
     
+    self.permissionHelper = [IMPermissionsHelper new];
     self.compressionQuality = 1.f;
     
     return self;
@@ -33,17 +36,8 @@
         sourceType == UIImagePickerControllerSourceTypeCamera)
         return;
     
-    NSString *mediaType = AVMediaTypeVideo;
-    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
-    if(sourceType == UIImagePickerControllerSourceTypeCamera &&
-       authStatus == AVAuthorizationStatusDenied) {
-        [[[UIAlertView alloc] initWithTitle:@"Error"
-                                    message:@"App doesn't have access to your photos. To enable access, tap Settings and turn on Photos."
-                                   delegate:self
-                          cancelButtonTitle:@"Cancel"
-                          otherButtonTitles:@"Settings", nil] show];
+    if(sourceType == UIImagePickerControllerSourceTypeCamera && ![self.permissionHelper isAvailableCameraPermission])
         return;
-    }
     
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
@@ -68,13 +62,6 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma marko UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 1)
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
 }
 
 @end

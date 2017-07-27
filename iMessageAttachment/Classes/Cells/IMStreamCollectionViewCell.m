@@ -9,6 +9,7 @@
 #import "IMStreamCollectionViewCell.h"
 #import "IMBundleLocator.h"
 #import "IMConstants.h"
+#import "IMPermissionsHelper.h"
 
 @interface IMStreamCollectionViewCell ()
 
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) UIButton *switchCameraButton;
 @property (nonatomic, strong) UIImageView *shotImageView;
 
+@property (nonatomic, strong) IMPermissionsHelper *permissionHelper;
 @property (nonatomic, weak, readonly) IMCaptureSessionManager *captureSessionManager;
 
 @end
@@ -26,6 +28,8 @@
     self = [super initWithFrame:frame];
     if(self == nil)
         return nil;
+    
+    self.permissionHelper = [IMPermissionsHelper new];
 
     self.streamView = [UIView new];
     [self.streamView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -60,7 +64,7 @@
         return;
     _captureSessionManager = captureSessionManager;
     
-    [self.captureSessionManager previewLayer:self.frame completion:^(AVCaptureVideoPreviewLayer *previewLayer) {
+    [_captureSessionManager previewLayer:self.frame completion:^(AVCaptureVideoPreviewLayer *previewLayer) {
         dispatch_async(dispatch_get_main_queue(), ^void() {
             [self.streamView.layer addSublayer:previewLayer];
         });
@@ -70,11 +74,17 @@
 #pragma mark - Private
 
 - (void)switchCameraButtonTapped:(id)sender {
+    if(![self.permissionHelper isAvailableCameraPermission])
+        return;
+    
     [self.captureSessionManager switchCamera];
 }
 
 - (void)shotButtonTapped {
     if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
+        return;
+    
+    if(![self.permissionHelper isAvailableCameraPermission])
         return;
     
     [self.captureSessionManager takePhoto:^(UIImage *image) {
@@ -106,7 +116,6 @@
 }
 
 - (void)setupConstraints {
-    
     {
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem: self.streamView
                                                                      attribute: NSLayoutAttributeWidth
