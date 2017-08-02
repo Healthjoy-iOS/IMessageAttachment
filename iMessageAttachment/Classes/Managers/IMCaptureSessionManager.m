@@ -107,7 +107,7 @@
     
     AVCaptureStillImageOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
     AVCaptureConnection *connection = [currentCameraOutput connectionWithMediaType:AVMediaTypeVideo];
-    if(connection.active) {
+    if(connection.active && connection.enabled && connection) {
         [currentCameraOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
             if(error)
                 NSLog(@"[IMessageAttachment] Error: %@", error.localizedDescription);
