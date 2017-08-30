@@ -4,10 +4,10 @@ Pod::Spec.new do |s|
   s.version = '1.1.5'
   s.license = 'MIT'
   s.summary = 'Photo attachment control from iMessage app'
-  s.homepage = 'https://github.com/nekromarko/IMessageAttachment'
+  s.homepage = 'https://github.com/Healthjoy-iOS/IMessageAttachment'
   s.author = { 'Mark Prutskiy' => 'makroo@yandex.ru' }
   s.source = {
-    :git => 'https://github.com/nekromarko/IMessageAttachment.git',
+    :git => 'https://github.com/Healthjoy-iOS/IMessageAttachment.git',
     :tag => '1.1.5'
   }
   s.platform = :ios

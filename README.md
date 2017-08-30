@@ -89,7 +89,7 @@ Then import the IMessageCollectionView into your source files:
 
 ## Author
 
-Mark Prutskiy, portals.gaming@gmail.com
+Mark Prutskiy, m.prutskiy@healthjoy.com HealthJoy
 
 
 ## License
