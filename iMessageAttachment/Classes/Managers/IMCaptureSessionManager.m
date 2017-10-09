@@ -33,14 +33,12 @@
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
     [output setOutputSettings:outputSettings];
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        _captureSession = [AVCaptureSession new];
-        self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
-        if([self.captureSession canAddInput:input])
-            [self.captureSession addInput:input];
-        if([self.captureSession canAddOutput:output])
-            [self.captureSession addOutput:output];
-    });
+    _captureSession = [AVCaptureSession new];
+    self.captureSession.sessionPreset = AVCaptureSessionPresetPhoto;
+    if([self.captureSession canAddInput:input])
+        [self.captureSession addInput:input];
+    if([self.captureSession canAddOutput:output])
+        [self.captureSession addOutput:output];
     
     return self;
 }
