@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) IMPermissionsHelper *permissionHelper;
 @property (nonatomic, weak, readonly) IMCaptureSessionManager *captureSessionManager;
+@property (nonatomic, weak, readonly) AVCaptureVideoPreviewLayer *previewLayer;
 
 @end
 
@@ -30,7 +31,7 @@
         return nil;
     
     self.permissionHelper = [IMPermissionsHelper new];
-
+    
     self.streamView = [UIView new];
     [self.streamView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.contentView addSubview:self.streamView];
@@ -60,18 +61,25 @@
 }
 
 - (void)setCaptureSessionManager:(IMCaptureSessionManager *)captureSessionManager {
-    if(captureSessionManager == _captureSessionManager)
+    if(captureSessionManager == _captureSessionManager) {
+        [self updatePreviewLayerFrame:self.frame];
         return;
+    }
     _captureSessionManager = captureSessionManager;
     
     [_captureSessionManager previewLayer:self.frame completion:^(AVCaptureVideoPreviewLayer *previewLayer) {
         dispatch_async(dispatch_get_main_queue(), ^void() {
-            [self.streamView.layer addSublayer:previewLayer];
+            _previewLayer = previewLayer;
+            [self.streamView.layer addSublayer:_previewLayer];
         });
     }];
 }
 
 #pragma mark - Private
+
+- (void)updatePreviewLayerFrame:(CGRect)frame {
+    _previewLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+}
 
 - (void)switchCameraButtonTapped:(id)sender {
     if(![self.permissionHelper isAvailableCameraPermission])
@@ -224,3 +232,4 @@
 }
 
 @end
+

@@ -62,10 +62,9 @@
 - (void)previewLayer:(CGRect)frame completion:(void(^)(AVCaptureVideoPreviewLayer *previewLayer))completion  {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         AVCaptureVideoPreviewLayer *layer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-        CGRect bounds = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        CGRect nFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        layer.bounds = bounds;
-        layer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+        layer.frame = nFrame;
         completion(layer);
     });
 }
@@ -121,3 +120,4 @@
 }
 
 @end
+
