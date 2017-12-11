@@ -39,12 +39,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self setupProperties];
-    [self setupNotifications];
     [self setupLayouts];
+    [self setupNotifications];
 }
 
-- (void)setupProperties {
+- (void)setupManagers {
     self.delegate = self;
     self.dataSource = self;
     
@@ -52,7 +51,32 @@
     self.captureSessionManager = [IMCaptureSessionManager new];
     self.photoAssetsManager = [[IMPhotoAssetsManager alloc] initWithCollectionView:self];
     [self.photoAssetsManager fetchAssets];
-    self.collectionViewHelper = [IMessageCollectionViewHelper new];
+    
+    [self updateCollectionView];
+}
+
+- (void)requestCameraAccessPermission {
+    __weak IMessageCollectionView *wSelf = self;
+    
+    NSString *mediaType = AVMediaTypeVideo;
+    [AVCaptureDevice requestAccessForMediaType:mediaType completionHandler:^(BOOL granted) {
+        IMessageCollectionView *sSelf = wSelf;
+        if(granted) {
+            dispatch_async(dispatch_get_main_queue(), ^void() {
+                [sSelf updateCollectionView];
+                [sSelf.captureSessionManager startRunning];
+            });
+        }
+    }];
+}
+
+- (void)setupFirstRun {
+    if(self.imagePickerManager != nil) {
+        return;
+    }
+    
+    [self setupManagers];
+    [self requestCameraAccessPermission];
 }
 
 - (void)setupNotifications {
@@ -63,6 +87,8 @@
 }
 
 - (void)setupLayouts {
+    self.collectionViewHelper = [IMessageCollectionViewHelper new];
+    
     self.backgroundColor = [UIColor colorWithRed: 209 / 255.f
                                            green: 212 / 255.f
                                             blue: 217 / 255.f
@@ -75,13 +101,13 @@
     self.collectionViewLayout = flowLayout;
     
     [self registerClass:[IMControlCameraCollectionViewCell class]
-                      forCellWithReuseIdentifier:kIMControlCameraCollectionViewCell];
+forCellWithReuseIdentifier:kIMControlCameraCollectionViewCell];
     [self registerClass:[IMControlPhotoLibraryCollectionViewCell class]
-                      forCellWithReuseIdentifier:kIMControlPhotoLibraryCollectionViewCell];
+forCellWithReuseIdentifier:kIMControlPhotoLibraryCollectionViewCell];
     [self registerClass:[IMStreamCollectionViewCell class]
-                      forCellWithReuseIdentifier:kIMStreamCollectionViewCell];
+forCellWithReuseIdentifier:kIMStreamCollectionViewCell];
     [self registerClass:[IMPhotoCollectionViewCell class]
-                      forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
+forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
 }
 
 - (void)setVCDelegate:(id<IMessageViewControllerDelegate>)VCDelegate {
@@ -90,6 +116,8 @@
 }
 
 - (void)startRunningStream {
+    [self setupFirstRun];
+    
     [self.captureSessionManager startRunning];
 }
 
@@ -103,8 +131,8 @@
 
 - (void)updateCollectionViewHeight:(CGFloat)height {
     [self.collectionViewHelper setKeyboardHeight:height];
-    [self layoutIfNeeded];
-    [self reloadData];
+    
+    [self updateCollectionView];
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -150,8 +178,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath
                                        targetSize:self.collectionViewHelper.targetSize
                                        completion:^(UIImage *image) {
-            photoCell.photoImageView.image = image;
-        }];
+                                           photoCell.photoImageView.image = image;
+                                       }];
     }
     
     return (UICollectionViewCell *)cell;
@@ -177,8 +205,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath
                                        targetSize:[self.photoAssetsManager maximumSize]
                                        completion:^(UIImage *image) {
-            [self.VCDelegate pickedAttachmentImage:image];
-        }];
+                                           [self.VCDelegate pickedAttachmentImage:image];
+                                       }];
     }
 }
 
@@ -190,6 +218,11 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 }
 
 #pragma mark - Utilities
+
+- (void)updateCollectionView {
+    [self layoutIfNeeded];
+    [self reloadData];
+}
 
 - (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize cellSize = CGSizeMake(0, 0);
@@ -222,3 +255,4 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 }
 
 @end
+
