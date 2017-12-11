@@ -48,6 +48,7 @@
     self.dataSource = self;
     
     self.imagePickerManager = [IMImagePickerManager new];
+    self.imagePickerManager.delegate = self.VCDelegate;
     self.captureSessionManager = [IMCaptureSessionManager new];
     self.photoAssetsManager = [[IMPhotoAssetsManager alloc] initWithCollectionView:self];
     [self.photoAssetsManager fetchAssets];
@@ -112,7 +113,6 @@ forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
 
 - (void)setVCDelegate:(id<IMessageViewControllerDelegate>)VCDelegate {
     _VCDelegate = VCDelegate;
-    self.imagePickerManager.delegate = VCDelegate;
 }
 
 - (void)startRunningStream {
