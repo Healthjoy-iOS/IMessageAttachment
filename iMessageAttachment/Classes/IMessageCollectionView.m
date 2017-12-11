@@ -72,10 +72,6 @@
 }
 
 - (void)setupFirstRun {
-    if(self.imagePickerManager != nil) {
-        return;
-    }
-    
     [self setupManagers];
     [self requestCameraAccessPermission];
 }
@@ -116,7 +112,10 @@ forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
 }
 
 - (void)startRunningStream {
-    [self setupFirstRun];
+    if(self.imagePickerManager == nil) {
+        [self setupFirstRun];
+        return;
+    }
     
     [self.captureSessionManager startRunning];
 }
