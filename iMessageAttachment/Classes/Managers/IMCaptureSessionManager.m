@@ -12,6 +12,7 @@
 @interface IMCaptureSessionManager ()
 
 @property (nonatomic, readonly) AVCaptureSession *captureSession;
+@property (nonatomic, readonly) dispatch_queue_t sessionQueue;
 
 @end
 
@@ -25,6 +26,8 @@
     
     if(self == nil)
         return nil;
+    
+    _sessionQueue = dispatch_queue_create("com.iMessageAttachment.app.backgroundQueue", 0);
     
     AVCaptureDevice *captureDevice = [[AVCaptureDevice devices] firstObject];
     NSError *error = nil;
@@ -44,13 +47,13 @@
 }
 
 - (void)startRunning {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_sessionQueue, ^{
         [self.captureSession startRunning];
     });
 }
 
 - (void)stopRunning {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_sessionQueue, ^{
         [self.captureSession stopRunning];
     });
 }
@@ -60,7 +63,7 @@
 }
 
 - (void)previewLayer:(CGRect)frame completion:(void(^)(AVCaptureVideoPreviewLayer *previewLayer))completion  {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(_sessionQueue, ^{
         AVCaptureVideoPreviewLayer *layer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
         CGRect nFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
