@@ -103,6 +103,8 @@
 }
 
 - (void)takePhoto:(MICaptureImageBlock)captureImageBlock {
+    if(!self.captureSession.isRunning)
+        return;
     _captureImageBlock = captureImageBlock;
     
     AVCaptureStillImageOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
