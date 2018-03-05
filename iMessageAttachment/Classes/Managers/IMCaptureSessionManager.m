@@ -8,6 +8,7 @@
 
 #import "IMCaptureSessionManager.h"
 #import <UIKit/UIImage.h>
+#import "IMUtilities.h"
 
 @interface IMCaptureSessionManager ()
 
@@ -118,7 +119,7 @@
                 NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
                 UIImage *image = [[UIImage alloc] initWithData:imageData];
                 
-                _captureImageBlock(image);
+                _captureImageBlock([IMUtilities fixOrientationOfImage:image]);
             }
         }];
     }

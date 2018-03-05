@@ -38,6 +38,7 @@
 		7DB387CA1E9D14BB00D234FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C51E9D14BB00D234FC /* Main.storyboard */; };
 		7DB387CB1E9D14BB00D234FC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DB387C71E9D14BB00D234FC /* Info.plist */; };
 		7DB387CD1E9D14C400D234FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DB387CC1E9D14C400D234FC /* main.m */; };
+		7DF275A7204D5D9800AC494D /* IMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DF275A5204D5D9800AC494D /* IMUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,8 @@
 		7DB387C61E9D14BB00D234FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		7DB387C71E9D14BB00D234FC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		7DB387CC1E9D14C400D234FC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		7DF275A5204D5D9800AC494D /* IMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMUtilities.m; sourceTree = "<group>"; };
+		7DF275A6204D5D9800AC494D /* IMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMUtilities.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				7D4940F11E9E4D5F003B7644 /* IMessageCollectionView.m */,
 				7D27E3C21EC3316100E60C09 /* IMessageCollectionViewHelper.h */,
 				7D27E3C31EC3316100E60C09 /* IMessageCollectionViewHelper.m */,
+				7DF275A6204D5D9800AC494D /* IMUtilities.h */,
+				7DF275A5204D5D9800AC494D /* IMUtilities.m */,
 				7D77182A1F31CFFF0069038E /* Helpers */,
 				7D4940F31E9E4D5F003B7644 /* Managers */,
 			);
@@ -335,6 +340,7 @@
 				7DB387CD1E9D14C400D234FC /* main.m in Sources */,
 				7D4940FD1E9E4D5F003B7644 /* IMControlPhotoLibraryCollectionViewCell.m in Sources */,
 				7D77182D1F31CFFF0069038E /* IMPermissionsHelper.m in Sources */,
+				7DF275A7204D5D9800AC494D /* IMUtilities.m in Sources */,
 				7D4940FC1E9E4D5F003B7644 /* IMControlCollectionViewCell.m in Sources */,
 				7DB387BD1E9D149500D234FC /* AppDelegate.m in Sources */,
 				7D4940FE1E9E4D5F003B7644 /* IMPhotoCollectionViewCell.m in Sources */,

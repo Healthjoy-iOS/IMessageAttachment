@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "IMessageViewControllerDelegate.h"
 #import "IMPermissionsHelper.h"
+#import "IMUtilities.h"
 
 @interface IMImagePickerManager ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -55,6 +56,7 @@
     
     NSData *imageDataJPEG = UIImageJPEGRepresentation(rawImage, self.compressionQuality);
     UIImage *mayCompressedImage = [UIImage imageWithData:imageDataJPEG];
+    mayCompressedImage = [IMUtilities fixOrientationOfImage:mayCompressedImage];
     
     [self.delegate pickedAttachmentImage:mayCompressedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
