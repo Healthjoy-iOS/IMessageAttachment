@@ -108,10 +108,19 @@
         return;
     _captureImageBlock = captureImageBlock;
     
+    AVCaptureConnection *videoConnection = nil;
     AVCaptureStillImageOutput *currentCameraOutput = [self.captureSession.outputs objectAtIndex:0];
-    AVCaptureConnection *connection = [currentCameraOutput connectionWithMediaType:AVMediaTypeVideo];
-    if(connection.active && connection.enabled && connection) {
-        [currentCameraOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+    for (AVCaptureConnection* connection in currentCameraOutput.connections) {
+        for (AVCaptureInputPort *port in [connection inputPorts]) {
+            if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+                videoConnection = connection;
+                break;
+            }
+        }
+        if (videoConnection) { break; }
+    }
+    if(videoConnection.active && videoConnection.enabled && videoConnection) {
+        [currentCameraOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
             if(error)
                 NSLog(@"[IMessageAttachment] Error: %@", error.localizedDescription);
             
