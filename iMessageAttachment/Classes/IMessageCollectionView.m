@@ -33,7 +33,7 @@
 
 @implementation IMessageCollectionView {
     
-    BOOL _isStreamRunning;
+    BOOL _isCaptureSessionInterrupted;
 }
 
 - (void)awakeFromNib {
@@ -46,6 +46,8 @@
 - (void)setupManagers {
     self.delegate = self;
     self.dataSource = self;
+    
+    _isCaptureSessionInterrupted = NO;
     
     self.imagePickerManager = [IMImagePickerManager new];
     self.imagePickerManager.delegate = self.VCDelegate;
@@ -81,6 +83,19 @@
                                              selector:@selector(tookImageFromCaptureSession:)
                                                  name:kIMTookImageFromCaptureSession
                                                object:nil];
+    
+    if (@available(iOS 9.0, *)) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(captureSessionInterrupted)
+                                                     name:AVCaptureSessionInterruptionReasonKey
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(tookImageFromCaptureSession:)
+                                                     name:AVCaptureSessionInterruptionEndedNotification
+                                                   object:nil];
+    }
+    
 }
 
 - (void)setupLayouts {
@@ -132,6 +147,16 @@ forCellWithReuseIdentifier:kIMPhotoCollectionViewCell];
     [self.collectionViewHelper setKeyboardHeight:height];
     
     [self updateCollectionView];
+}
+
+#pragma mark - Notifications
+
+- (void)captureSessionInterrupted {
+    _isCaptureSessionInterrupted = YES;
+}
+
+- (void)captureSessionInterruptionEnded {
+    _isCaptureSessionInterrupted = NO;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -200,6 +225,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     }
     else if(indexPath.row >= IMPhotoCell)
     {
+        if (![self isStreamRunning] || _isCaptureSessionInterrupted) {
+            return;
+        }
+        
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath
                                        targetSize:[self.photoAssetsManager maximumSize]
