@@ -91,7 +91,7 @@
                                                    object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(tookImageFromCaptureSession:)
+                                                 selector:@selector(captureSessionInterruptionEnded)
                                                      name:AVCaptureSessionInterruptionEndedNotification
                                                    object:nil];
     }
