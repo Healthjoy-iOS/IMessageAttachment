@@ -220,7 +220,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     }
     else if(indexPath.row == IMSteamCell)
     {
-        if (![self isStreamRunning] || _isCaptureSessionInterrupted) {
+        if(_isCaptureSessionInterrupted) {
             return;
         }
         

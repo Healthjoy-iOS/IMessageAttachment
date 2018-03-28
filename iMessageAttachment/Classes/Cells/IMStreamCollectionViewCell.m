@@ -95,6 +95,9 @@
     if(![self.permissionHelper isAvailableCameraPermission])
         return;
     
+    if(![self.captureSessionManager isRunning])
+        return;
+    
     [self.captureSessionManager takePhoto:^(UIImage *image) {
         if(image)
         {
