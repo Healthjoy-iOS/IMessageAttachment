@@ -220,15 +220,15 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     }
     else if(indexPath.row == IMSteamCell)
     {
+        if (![self isStreamRunning] || _isCaptureSessionInterrupted) {
+            return;
+        }
+        
         IMStreamCollectionViewCell *streamCell = (IMStreamCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         [streamCell shotButtonTapped];
     }
     else if(indexPath.row >= IMPhotoCell)
     {
-        if (![self isStreamRunning] || _isCaptureSessionInterrupted) {
-            return;
-        }
-        
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath
                                        targetSize:[self.photoAssetsManager maximumSize]
