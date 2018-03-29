@@ -16,7 +16,6 @@
 - (void)fetchAssets;
 
 - (NSUInteger)photoCount;
-- (CGSize)maximumSize;
 - (void)photoAtIndexPath:(NSIndexPath *)indexPath
               targetSize:(CGSize)targetSize completion:(void(^)(UIImage *image))completion;
 

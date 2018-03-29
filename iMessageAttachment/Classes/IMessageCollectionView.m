@@ -231,7 +231,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     {
         NSIndexPath *photoIndexPath = [NSIndexPath indexPathForRow:indexPath.item - kIMStaticControlAmount inSection:indexPath.section];
         [self.photoAssetsManager photoAtIndexPath:photoIndexPath
-                                       targetSize:[self.photoAssetsManager maximumSize]
+                                       targetSize:CGSizeZero
                                        completion:^(UIImage *image) {
                                            [self.VCDelegate pickedAttachmentImage:image];
                                        }];

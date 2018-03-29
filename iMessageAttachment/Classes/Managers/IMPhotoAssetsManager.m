@@ -52,13 +52,19 @@
 }
 
 - (void)photoAtIndexPath:(NSIndexPath *)indexPath
-              targetSize:(CGSize)targetSize completion:(void(^)(UIImage *image))completion {
+              targetSize:(CGSize)targetSize
+              completion:(void(^)(UIImage *image))completion {
+    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    
     PHImageRequestOptions* options = [PHImageRequestOptions new];
     options.version = PHImageRequestOptionsVersionCurrent;
     options.deliveryMode = PHImageRequestOptionsDeliveryModeHighQualityFormat;
     options.resizeMode = PHImageRequestOptionsResizeModeExact;
     
-    PHAsset *asset = self.assetsFetchResults[indexPath.item];
+    if(targetSize.width == 0 && targetSize.height == 0) {
+        targetSize = CGSizeMake(asset.pixelWidth, asset.pixelHeight);
+    }
+    
     [self.imageManager requestImageForAsset:asset
                                  targetSize:targetSize
                                 contentMode:PHImageContentModeAspectFill
@@ -68,9 +74,5 @@
                               }];
 }
 
-- (CGSize)maximumSize {
-    
-    return PHImageManagerMaximumSize;
-}
-
 @end
+
